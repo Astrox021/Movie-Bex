@@ -1,0 +1,541 @@
+
+<!--
+=========================================================
+ MOVIETRAILERS - BLOGGER MOVIE WEBSITE
+ Adsterra integration points:
+ 1. SMARTLINK: Replace YOUR_ADSTERRA_SMARTLINK_URL
+ 2. TOP BANNER: Paste your Adsterra banner code below
+ 3. SIDEBAR BANNER: Paste your Adsterra banner code below
+ 4. SOCIAL BAR: Paste your Adsterra Social Bar script
+ 5. FOOTER BANNER: Paste your Adsterra banner code below
+
+ No API key is required for this basic template.
+ Adsterra provides publisher-specific ad code/links.
+=========================================================
+-->
+
+<div id="movie-site">
+<style>
+#movie-site{
+ --bg:#070d14;--panel:#101b28;--red:#ff2638;
+ --text:#f5f7fb;--muted:#a5b2c4;
+ background:var(--bg);color:var(--text);
+ font-family:Arial,Helvetica,sans-serif;
+ margin:-15px;min-height:100vh;line-height:1.5;
+}
+#movie-site *{box-sizing:border-box}
+#movie-site a{color:inherit;text-decoration:none}
+#movie-site button,#movie-site input,#movie-site select{
+ font:inherit
+}
+#movie-site .wrap{max-width:1200px;margin:auto;padding:0 18px}
+#movie-site .topline{background:#050a10;border-bottom:1px solid #1b2a39;
+ font-size:12px;color:var(--muted);padding:8px 0}
+#movie-site header{background:#09121d;border-bottom:1px solid #263447}
+#movie-site .head{display:flex;align-items:center;justify-content:space-between;
+ gap:18px;padding:17px 0;flex-wrap:wrap}
+#movie-site .logo{font-size:25px;font-weight:900;letter-spacing:-1px}
+#movie-site .logo span{color:var(--red)}
+#movie-site .tagline{font-size:11px;color:var(--muted)}
+#movie-site nav{display:flex;gap:17px;flex-wrap:wrap;font-size:13px}
+#movie-site nav a:hover{color:var(--red)}
+#movie-site .search{display:flex;gap:5px}
+#movie-site input,#movie-site select{
+ background:#182637;border:1px solid #2b3d52;color:white;
+ padding:10px;border-radius:6px;max-width:100%;min-width:0
+}
+#movie-site .btn{display:inline-block;background:var(--red);color:white;
+ border:0;border-radius:5px;padding:10px 15px;cursor:pointer;font-weight:bold}
+#movie-site .btn:hover{background:#d9162a}
+#movie-site .ad{
+ border:1px dashed #405064;background:#0d1723;color:#b6c4d5;
+ text-align:center;padding:17px;margin:20px 0;border-radius:5px;
+ min-height:90px;font-size:12px
+}
+#movie-site .ad strong{display:block;color:#ff6875;font-size:14px}
+#movie-site .layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;
+ gap:24px;align-items:start}
+#movie-site .hero{position:relative;min-height:340px;border-radius:8px;
+ overflow:hidden;background:#172435;
+ background-size:cover;background-position:center;
+ display:flex;align-items:end;margin-bottom:27px;
+ border:1px solid #28384a}
+#movie-site .hero:before{content:"";position:absolute;inset:0;
+ background:linear-gradient(0deg,rgba(3,8,15,.98),rgba(3,8,15,.1) 90%)}
+#movie-site .hero-content{position:relative;padding:27px;max-width:650px}
+#movie-site .pill{display:inline-block;background:var(--red);color:white;
+ border-radius:3px;padding:3px 8px;font-size:11px}
+#movie-site .hero h1{font-size:clamp(24px,4vw,36px);line-height:1.15;margin:12px 0}
+#movie-site .muted{color:var(--muted);font-size:13px}
+#movie-site .section{margin:25px 0 32px}
+#movie-site .section-head{display:flex;justify-content:space-between;
+ align-items:center;gap:12px;border-bottom:1px solid #344357;
+ margin-bottom:15px;padding-bottom:10px}
+#movie-site h2{font-size:21px;margin:0}
+#movie-site .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+#movie-site .card{background:var(--panel);border:1px solid #263649;
+ border-radius:6px;overflow:hidden;min-width:0}
+#movie-site .poster{width:100%;aspect-ratio:2/3;object-fit:cover;
+ display:block;background:#1a2939}
+#movie-site .card-body{padding:10px}
+#movie-site .card h3{font-size:14px;margin:0 0 5px;line-height:1.35}
+#movie-site .card .btn{width:100%;text-align:center;margin-top:10px;
+ padding:8px 4px;font-size:12px}
+#movie-site .sidebox{border:1px solid #29394a;background:#0b141f;
+ border-radius:6px;padding:15px;margin-bottom:20px}
+#movie-site .sidebox h3{margin:0 0 13px;font-size:17px;
+ border-bottom:1px solid #29394a;padding-bottom:9px}
+#movie-site .genres{display:flex;gap:7px;flex-wrap:wrap}
+#movie-site .genre{background:#1a2939;border:1px solid #304359;
+ padding:7px 10px;border-radius:4px;font-size:12px;cursor:pointer;color:white}
+#movie-site .genre.active,#movie-site .genre:hover{background:var(--red)}
+#movie-site .socials{display:flex;gap:9px;flex-wrap:wrap}
+#movie-site .socials a{background:#17283a;padding:8px 11px;border-radius:4px}
+#movie-site footer{border-top:1px solid #29394a;margin-top:40px;
+ padding:28px 0;color:var(--muted);font-size:12px}
+#movie-site .footer-row{display:flex;justify-content:space-between;
+ gap:20px;flex-wrap:wrap}
+#movie-site .empty{color:var(--muted);padding:20px 0}
+#movie-site .modal{display:none;position:fixed;inset:0;z-index:99999;
+ background:rgba(0,0,0,.88);overflow:auto;padding:20px}
+#movie-site .modal.show{display:block}
+#movie-site .modal-inner{max-width:850px;margin:35px auto;background:#0d1723;
+ border:1px solid #344357;border-radius:8px;padding:20px;position:relative}
+#movie-site .close{float:right;background:#263649;color:white;border:0;
+ padding:6px 12px;cursor:pointer;border-radius:4px}
+#movie-site .detail{display:grid;grid-template-columns:180px 1fr;gap:20px;
+ margin:25px 0}
+#movie-site .detail img{width:100%;border-radius:5px}
+#movie-site .trailer{width:100%;aspect-ratio:16/9;border:0;background:#000}
+#movie-site .small{font-size:12px;color:var(--muted)}
+@media(max-width:900px){
+ #movie-site .layout{grid-template-columns:1fr}
+ #movie-site .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+ #movie-site aside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+}
+@media(max-width:580px){
+ #movie-site .wrap{padding:0 12px}
+ #movie-site .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ #movie-site aside{display:block}
+ #movie-site .hero{min-height:290px}
+ #movie-site .hero-content{padding:17px}
+ #movie-site nav{gap:12px}
+ #movie-site .search{width:100%}
+ #movie-site .search input{flex:1;width:100%}
+ #movie-site .detail{grid-template-columns:100px 1fr}
+ #movie-site .ad{padding:12px}
+}
+</style>
+
+<div class="topline">
+ <div class="wrap">▶ Watch the latest movie trailers, reviews and film news</div>
+</div>
+
+<header>
+ <div class="wrap head">
+  <div>
+   <a class="logo" href="#home">Movie<span>Trailers</span></a>
+   <div class="tagline">Latest Movies | Trailers | Reviews</div>
+  </div>
+  <nav aria-label="Main navigation">
+   <a href="#home">Home</a>
+   <a href="#movies">Movies</a>
+   <a href="#trailers">Trailers</a>
+   <a href="#genres">Genres</a>
+   <a href="#blog">Blog</a>
+  </nav>
+  <form class="search" id="movieSearch">
+   <input id="searchInput" type="search" placeholder="Search movies..." aria-label="Search movies">
+   <button class="btn" type="submit">Search</button>
+  </form>
+ </div>
+</header>
+
+<main class="wrap" id="home">
+
+ <!-- ADSTERRA TOP BANNER: replace this placeholder with your banner code -->
+ <div class="ad" id="top-banner">
+  <strong>ADSTERRA TOP BANNER — 728 × 90</strong>
+  <!-- PASTE YOUR ADSTERRA BANNER CODE HERE -->
+  <!-- Keep the original script and container supplied by Adsterra. -->
+  <span>Paste your own banner ad code here</span>
+ </div>
+
+ <div class="layout">
+  <div>
+   <section class="hero" id="hero">
+    <div class="hero-content">
+     <span class="pill">FEATURED TRAILER</span>
+     <h1>Discover Your Next Favorite Movie</h1>
+     <p class="muted">Explore new releases, popular films and official trailers.</p>
+     <a href="#movies" class="btn">▶ Explore Movies</a>
+    </div>
+   </section>
+
+   <section class="section" id="genres">
+    <div class="section-head"><h2>Browse Genres</h2></div>
+    <div class="genres" id="genreButtons">
+     <button class="genre active" data-genre="All">All</button>
+     <button class="genre" data-genre="Action">Action</button>
+     <button class="genre" data-genre="Drama">Drama</button>
+     <button class="genre" data-genre="Sci-Fi">Sci-Fi</button>
+     <button class="genre" data-genre="Adventure">Adventure</button>
+     <button class="genre" data-genre="Comedy">Comedy</button>
+     <button class="genre" data-genre="Animation">Animation</button>
+    </div>
+   </section>
+
+   <section class="section" id="movies">
+    <div class="section-head">
+     <h2>Latest Movies & Trailers</h2>
+     <span class="muted" id="resultCount"></span>
+    </div>
+    <div class="cards" id="movieGrid"></div>
+    <p class="empty" id="noResults" hidden>No movies found. Try another search.</p>
+   </section>
+
+   <!-- ADSTERRA MID-PAGE BANNER: paste your banner code here -->
+   <div class="ad" id="middle-banner">
+    <strong>ADSTERRA MID-PAGE BANNER — 728 × 90</strong>
+    <!-- PASTE YOUR ADSTERRA BANNER CODE HERE -->
+    <span>Your second banner placement</span>
+   </div>
+
+   <section class="section" id="trailers">
+    <div class="section-head"><h2>Popular Trailers</h2></div>
+    <div class="cards" id="popularGrid"></div>
+   </section>
+
+   <section class="section" id="blog">
+    <div class="section-head"><h2>Movie News & Reviews</h2></div>
+    <p class="muted">Publish your reviews, trailer announcements and film news as regular Blogger posts. Link your posts here to build a complete movie blog.</p>
+    <a class="btn" href="/search/label/Movie%20News">Read Movie News</a>
+   </section>
+  </div>
+
+  <aside>
+   <!-- ADSTERRA SIDEBAR BANNER: replace placeholder with your code -->
+   <div class="ad" id="sidebar-banner">
+    <strong>ADSTERRA SIDEBAR — 300 × 250</strong>
+    <!-- PASTE YOUR ADSTERRA BANNER CODE HERE -->
+    <span>Sidebar advertisement</span>
+   </div>
+
+   <div class="sidebox">
+    <h3>Follow Us</h3>
+    <div class="socials">
+     <!-- Replace # with your actual social profile URLs -->
+     <a href="#" target="_blank" rel="noopener">Facebook</a>
+     <a href="#" target="_blank" rel="noopener">YouTube</a>
+     <a href="#" target="_blank" rel="noopener">Instagram</a>
+     <a href="#" target="_blank" rel="noopener">Telegram</a>
+    </div>
+   </div>
+
+   <div class="sidebox">
+    <h3>Trending Now</h3>
+    <div id="trendingList" class="small"></div>
+   </div>
+
+   <div class="sidebox">
+    <h3>About This Site</h3>
+    <p class="muted">Your destination for movie trailers, reviews, entertainment news and film discoveries.</p>
+    <a href="/p/contact.html">Contact Us</a>
+   </div>
+
+   <!-- OPTIONAL ADSTERRA VERTICAL BANNER -->
+   <div class="ad" id="vertical-banner" style="min-height:250px">
+    <strong>ADSTERRA VERTICAL AD</strong>
+    <!-- PASTE YOUR APPROVED VERTICAL AD CODE HERE -->
+    <span>Additional advertising placement</span>
+   </div>
+  </aside>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="footer-row">
+   <div>
+    <a class="logo" href="#home">Movie<span>Trailers</span></a>
+    <p>Movies, trailers and entertainment news.</p>
+   </div>
+   <div>
+    <a href="/p/about.html">About</a> ·
+    <a href="/p/contact.html">Contact</a> ·
+    <a href="/p/privacy-policy.html">Privacy Policy</a> ·
+    <a href="/p/disclaimer.html">Disclaimer</a>
+   </div>
+  </div>
+  <p>© <span id="year"></span> MovieTrailers. All rights reserved.</p>
+ </div>
+</footer>
+
+<!-- Movie detail / trailer popup -->
+<div class="modal" id="movieModal" role="dialog" aria-modal="true" aria-label="Movie details">
+ <div class="modal-inner">
+  <button class="close" id="closeModal" type="button">✕ Close</button>
+  <div id="modalContent"></div>
+ </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/*
+=========================================================
+ EDIT YOUR MOVIES HERE
+ Change the poster, description, genre and YouTube trailer ID.
+ Use official trailer embeds or content you have permission to show.
+=========================================================
+*/
+const movies = [
+ {
+  title:"Dune: Part Two",
+  year:"2024",
+  genre:"Sci-Fi",
+  rating:"8.5",
+  description:"Explore the official trailer and information for this science-fiction adventure.",
+  poster:"https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+  trailer:"Way9Dexny3w"
+ },
+ {
+  title:"John Wick: Chapter 4",
+  year:"2023",
+  genre:"Action",
+  rating:"7.7",
+  description:"Discover the action-packed official trailer and movie details.",
+  poster:"https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg",
+  trailer:"qEVUtrk8_B4"
+ },
+ {
+  title:"Oppenheimer",
+  year:"2023",
+  genre:"Drama",
+  rating:"8.3",
+  description:"Explore the trailer and background of this historical drama.",
+  poster:"https://image.tmdb.org/t/p/w500/ptpr0kGAckfQkJeJIt8st5dglvd.jpg",
+  trailer:"uYPbbksJxIg"
+ },
+ {
+  title:"Spider-Man: Across the Spider-Verse",
+  year:"2023",
+  genre:"Animation",
+  rating:"8.6",
+  description:"Enter an animated multiverse in this official trailer feature.",
+  poster:"https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+  trailer:"cqGjhVJWtEg"
+ },
+ {
+  title:"Interstellar",
+  year:"2014",
+  genre:"Sci-Fi",
+  rating:"8.7",
+  description:"A science-fiction adventure across space and time.",
+  poster:"https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+  trailer:"zSWdZVtXT7E"
+ },
+ {
+  title:"The Batman",
+  year:"2022",
+  genre:"Action",
+  rating:"7.8",
+  description:"A dark detective story featuring Gotham's masked hero.",
+  poster:"https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+  trailer:"mqqft2x_Aa4"
+ },
+ {
+  title:"Avengers: Endgame",
+  year:"2019",
+  genre:"Adventure",
+  rating:"8.4",
+  description:"The Avengers face the aftermath of a universe-changing battle.",
+  poster:"https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+  trailer:"TcMBFSGVi1c"
+ },
+ {
+  title:"The Shawshank Redemption",
+  year:"1994",
+  genre:"Drama",
+  rating:"9.3",
+  description:"A celebrated drama about hope, friendship and resilience.",
+  poster:"https://image.tmdb.org/t/p/w500/9cjIGR7S5Z6S5r6x0z0h3e5X7eM.jpg",
+  trailer:"6hB3S9bIaco"
+ }
+];
+
+const SMARTLINK = "YOUR_ADSTERRA_SMARTLINK_URL";
+// Replace the value above with your own Adsterra Direct Link / Smartlink.
+// This is a personal URL, so the template cannot fill it in automatically.
+
+const grid = document.getElementById("movieGrid");
+const popularGrid = document.getElementById("popularGrid");
+const input = document.getElementById("searchInput");
+const noResults = document.getElementById("noResults");
+const resultCount = document.getElementById("resultCount");
+const modal = document.getElementById("movieModal");
+const modalContent = document.getElementById("modalContent");
+
+let activeGenre = "All";
+let activeQuery = "";
+
+function escapeHTML(value){
+ return String(value).replace(/[&<>"']/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+ });
+}
+
+function movieCard(movie,index){
+ return `
+ <article class="card">
+  <a href="#movie-${index}" class="open-movie" data-index="${index}" aria-label="Details for ${escapeHTML(movie.title)}">
+   <img class="poster" src="${escapeHTML(movie.poster)}"
+    alt="${escapeHTML(movie.title)} poster" loading="lazy"
+    onerror="this.style.visibility='hidden'">
+  </a>
+  <div class="card-body">
+   <h3>${escapeHTML(movie.title)}</h3>
+   <div class="muted">${escapeHTML(movie.year)} · ${escapeHTML(movie.genre)}</div>
+   <div class="small">★ ${escapeHTML(movie.rating)}</div>
+   <button class="btn play-button" type="button" data-index="${index}">▶ Watch Trailer</button>
+  </div>
+ </article>`;
+}
+
+function filteredMovies(){
+ return movies.filter(function(m){
+  const text = (m.title+" "+m.genre+" "+m.year).toLowerCase();
+  return (activeGenre==="All" || m.genre===activeGenre)
+   && text.includes(activeQuery);
+ });
+}
+
+function render(){
+ const list = filteredMovies();
+ grid.innerHTML = list.map(function(m){
+  return movieCard(m,movies.indexOf(m));
+ }).join("");
+ resultCount.textContent = list.length+" movies";
+ noResults.hidden = list.length!==0;
+
+ popularGrid.innerHTML = movies.slice(0,4).map(function(m){
+  return movieCard(m,movies.indexOf(m));
+ }).join("");
+
+ document.getElementById("trendingList").innerHTML =
+  movies.slice(0,5).map(function(m,i){
+   return '<p><a href="#movie-'+i+'" class="open-movie" data-index="'+i+'">▶ '
+    +escapeHTML(m.title)+'</a><br><span class="muted">★ '
+    +escapeHTML(m.rating)+'</span></p>';
+  }).join("");
+}
+
+function openMovie(index){
+ const m=movies[index];
+ if(!m)return;
+
+ const smartlinkReady = SMARTLINK !== "YOUR_ADSTERRA_SMARTLINK_URL"
+  && /^https?:\/\//i.test(SMARTLINK);
+
+ modalContent.innerHTML = `
+  <div class="detail">
+   <img src="${escapeHTML(m.poster)}" alt="${escapeHTML(m.title)} poster">
+   <div>
+    <span class="pill">${escapeHTML(m.genre)}</span>
+    <h2>${escapeHTML(m.title)} (${escapeHTML(m.year)})</h2>
+    <p class="muted">★ ${escapeHTML(m.rating)} / 10</p>
+    <p>${escapeHTML(m.description)}</p>
+    <p class="small">Select a button below to continue.</p>
+    <button type="button" class="btn" id="modalPlay">▶ Play / Continue</button>
+    <button type="button" class="genre" id="showTrailer">View Official Trailer</button>
+   </div>
+  </div>
+  <div id="trailerArea"></div>
+  <p class="small">Trailer availability depends on the original video provider.</p>
+ `;
+
+ modal.classList.add("show");
+ document.body.style.overflow="hidden";
+
+ document.getElementById("modalPlay").addEventListener("click",function(){
+  if(smartlinkReady){
+   // SMARTLINK: Opens your personal Adsterra URL in a new tab.
+   window.open(SMARTLINK,"_blank","noopener,noreferrer");
+  }else{
+   alert("Add your personal Adsterra Smartlink in the SMARTLINK setting in the code first.");
+  }
+ });
+
+ document.getElementById("showTrailer").addEventListener("click",function(){
+  // Official trailer embed; not a pirated movie download or stream.
+  document.getElementById("trailerArea").innerHTML =
+   '<iframe class="trailer" title="Official trailer for '+escapeHTML(m.title)
+   +'" src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(m.trailer)
+   +'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>';
+ });
+}
+
+function closeModal(){
+ modal.classList.remove("show");
+ document.body.style.overflow="";
+ document.getElementById("trailerArea")?.replaceChildren();
+}
+
+document.addEventListener("click",function(e){
+ const button=e.target.closest(".play-button");
+ if(button){openMovie(Number(button.dataset.index));return;}
+
+ const link=e.target.closest(".open-movie");
+ if(link){e.preventDefault();openMovie(Number(link.dataset.index));}
+});
+
+document.getElementById("closeModal").addEventListener("click",closeModal);
+modal.addEventListener("click",function(e){if(e.target===modal)closeModal();});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal();});
+
+document.getElementById("movieSearch").addEventListener("submit",function(e){
+ e.preventDefault();
+ activeQuery=input.value.trim().toLowerCase();
+ render();
+ document.getElementById("movies").scrollIntoView({behavior:"smooth"});
+});
+
+input.addEventListener("input",function(){
+ activeQuery=input.value.trim().toLowerCase();
+ render();
+});
+
+document.getElementById("genreButtons").addEventListener("click",function(e){
+ const btn=e.target.closest("[data-genre]");
+ if(!btn)return;
+ activeGenre=btn.dataset.genre;
+ document.querySelectorAll("#genreButtons .genre").forEach(function(b){
+  b.classList.toggle("active",b===btn);
+ });
+ render();
+});
+
+document.getElementById("year").textContent=new Date().getFullYear();
+
+render();
+})();
+</script>
+
+<!--
+=========================================================
+ ADSTERRA SOCIAL BAR
+ Paste the exact Social Bar script provided in your
+ Adsterra publisher dashboard here, if you choose to use it.
+ Do not paste a random third-party script.
+=========================================================
+
+ ADSTERRA POPUNDER / OTHER FORMATS
+ Paste only the script generated for your account here.
+ Check the provider's placement rules and your site policies.
+
+=========================================================
+ END OF TEMPLATE
+=========================================================
+-->
+</div>
